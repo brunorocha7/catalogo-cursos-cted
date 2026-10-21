@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Cursos - CTED</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Catálogo de Cursos CTED</h1>
+    </header>
+
+    <main class="container">
+        <!-- Secção de Filtros e Pesquisa -->
+        <section class="filters-section" aria-label="Filtros de pesquisa">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Pesquisar por nome do curso..." aria-label="Pesquisar curso por nome">
+            </div>
+
+            <div class="select-filters">
+                <select id="categoriaFilter" aria-label="Filtrar por Categoria">
+                    <option value="">Todas as Categorias</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Gestão">Gestão</option>
+                    <option value="Design">Design</option>
+                </select>
+
+                <select id="modalidadeFilter" aria-label="Filtrar por Modalidade">
+                    <option value="">Todas as Modalidades</option>
+                    <option value="EAD">EAD</option>
+                    <option value="Presencial">Presencial</option>
+                </select>
+
+                <select id="statusFilter" aria-label="Filtrar por Status">
+                    <option value="">Todos os Status</option>
+                    <option value="Disponível">Disponível</option>
+                    <option value="Em Breve">Em Breve</option>
+                    <option value="Encerrado">Encerrado</option>
+                </select>
+
+                <button id="clearFiltersBtn" type="button">Limpar Filtros</button>
+            </div>
+        </section>
+
+        <!-- Indicador de Resultados e Estados da Interface -->
+        <div class="results-info">
+            <span id="resultsCount">Carregando cursos...</span>
+        </div>
+
+        <div id="loadingState" class="state-message" style="display: none;">
+            <p>Carregando catálogo...</p>
+        </div>
+
+        <div id="errorState" class="state-message error" style="display: none;">
+            <p>Ocorreu um erro ao carregar os cursos. Certifique-se de que a API está a rodar.</p>
+        </div>
+
+        <div id="emptyState" class="state-message" style="display: none;">
+            <p>Nenhum curso encontrado com os filtros selecionados.</p>
+        </div>
+
+        <!-- Lista de Cursos -->
+        <section id="coursesGrid" class="courses-grid" aria-label="Lista de cursos"></section>
+    </main>
+
+    <!-- Modal de Detalhes do Curso -->
+    <div id="courseModal" class="modal" style="display: none;" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModalBtn" aria-label="Fechar detalhes">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

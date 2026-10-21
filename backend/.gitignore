@@ -1,0 +1,13 @@
+# Pastas de compilação do .NET
+**/bin/
+**/obj/
+.vs/
+.vscode/
+
+# Banco de dados SQLite local
+backend/*.db
+backend/*.db-journal
+
+# Ficheiros do sistema
+.DS_Store
+Thumbs.db
