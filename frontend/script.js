@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5092/api/cursos';
+const API_URL = 'https://catalogo-cursos-api.onrender.com/api/cursos';
 
 const searchInput = document.getElementById('searchInput');
 const categoriaFilter = document.getElementById('categoriaFilter');
