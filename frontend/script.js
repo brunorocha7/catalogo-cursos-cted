@@ -91,10 +91,16 @@ function renderCursos(cursos) {
 
 async function openDetails(id) {
     try {
-        const response = await fetch(`${API_URL}/${id}`);
-        if (!response.ok) throw new Error('Curso não encontrado');
+        let curso;
+        try {
+            const response = await fetch(`${API_URL}/${id}`);
+            if (response.ok) curso = await response.json();
+        } catch (e) {
+            curso = mockCursos.find(c => c.id === id);
+        }
 
-        const curso = await response.json();
+        if (!curso) curso = mockCursos.find(c => c.id === id);
+
         modalBody.innerHTML = `
             <h2>${curso.nomeCompleto}</h2>
             <p><strong>Descrição:</strong> ${curso.descricao}</p>
@@ -104,7 +110,7 @@ async function openDetails(id) {
             <p><strong>Público-alvo:</strong> ${curso.publicoAlvo}</p>
             <p><strong>Status:</strong> ${curso.status}</p>
         `;
-        modal.style.display = 'block';
+        modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
     } catch (err) {
         alert('Não foi possível carregar os detalhes do curso.');
@@ -112,7 +118,7 @@ async function openDetails(id) {
 }
 
 function closeModal() {
-    modal.style.display = 'none';
+    modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
 }
 
