@@ -141,7 +141,7 @@ Caso o arquivo do banco não exista, o EF Core cria a estrutura de tabelas e pop
 
 1. **Link do Repositório no GitHub:** <https://github.com/brunorocha7/catalogo-cursos-cted>
 
-2. **Link da Aplicação Publicada (Front-end):** <https://brunorocha7.github.io/catalogo-cursos-cted/>
+2. **Link da Aplicação Publicada (Front-end):** <https://brunorocha7.github.io/catalogo-cursos-cted/frontend/>
 
 3. **Link da API Publicada (Render):** <https://catalogo-cursos-api.onrender.com/api/cursos>
 
