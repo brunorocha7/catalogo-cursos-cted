@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Curso - SESI + Indústria</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="curso-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <div class="brand-logo">
+                <a href="index.html">
+                    <img id="navbarLogo" src="assets/logo-sesi-industria-primary.svg" alt="SESI + Indústria">
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html#inicio">Início</a>
+                <a href="index.html#cursos" class="active">Cursos</a>
+                <a href="index.html#sobre">Sobre</a>
+                <a href="#" class="btn-area-aluno">Área do aluno</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Topo do Curso / Banner Principal -->
+    <section class="course-detail-hero container">
+        <div class="course-hero-info">
+            <span id="courseCategoryBadge" class="badge-category-detail">TECNOLOGIA</span>
+            <h1 id="courseTitle">Carregando curso...</h1>
+            
+            <div class="course-meta">
+                <p><i class="fa-regular fa-calendar"></i> Início do curso: <strong id="courseStartDate">05/01/2026</strong></p>
+                <p><i class="fa-solid fa-award"></i> Certificação: <strong id="courseCert">SESI</strong></p>
+            </div>
+
+            <a href="#matricula" class="btn-enroll-dark">Matricule-se <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="course-hero-media">
+            <img id="courseMediaThumb" src="assets/video-thumb.png" alt="Aulas do curso">
+            <div class="play-btn-overlay">
+                <i class="fa-solid fa-play"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Barra de 4 Recursos -->
+    <section class="course-features-bar container">
+        <div class="course-feature-item">
+            <div class="icon-wrapper-gold">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <div class="feature-detail-text">
+                <h4>Certificação SESI</h4>
+                <p>Cursos com a melhor certificação do mercado industrial reconhecidos pelo SESI.</p>
+            </div>
+        </div>
+
+        <div class="course-feature-item">
+            <div class="icon-wrapper-gold">
+                <i class="fa-solid fa-user-graduate"></i>
+            </div>
+            <div class="feature-detail-text">
+                <h4>Professores especialistas</h4>
+                <p>Contamos com professores reconhecidos por sua excelência no mercado.</p>
+            </div>
+        </div>
+
+        <div class="course-feature-item">
+            <div class="icon-wrapper-gold">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+            <div class="feature-detail-text">
+                <h4>Suporte contínuo</h4>
+                <p>Você não está sozinho! Acompanhamento online durante todo o curso.</p>
+            </div>
+        </div>
+
+        <div class="course-feature-item">
+            <div class="icon-wrapper-gold">
+                <i class="fa-regular fa-clock"></i>
+            </div>
+            <div class="feature-detail-text">
+                <h4>Flexibilidade</h4>
+                <p>Turmas presenciais e online com horários que se adaptam à sua rotina.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre o Curso e Módulos (Accordion) -->
+    <section class="course-about-section container">
+        <div class="about-text-col">
+            <h2>Sobre o curso</h2>
+            <p id="courseAboutDescription">
+                Explore nosso curso. Este programa abrangente foi desenvolvido para capacitar profissionais com as habilidades e conhecimentos fundamentais para garantir excelência no ambiente industrial.
+            </p>
+        </div>
+
+        <div class="about-accordion-col">
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span>Módulos</span>
+                    <i class="fa-solid fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Módulo 1: Introdução e Conceitos Fundamentais</li>
+                        <li>Módulo 2: Aplicação Prática na Indústria</li>
+                        <li>Módulo 3: Projeto Final e Avaliação Prática</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span>Aulas online e avaliações</span>
+                    <i class="fa-solid fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>Aulas síncronas gravadas para assistir a qualquer momento e avaliações práticas no final de cada módulo.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span>Dúvidas frequentes</span>
+                    <i class="fa-solid fa-plus icon-toggle"></i>
+                </button>
+                <div class="accordion-content">
+                    <p>Tem suporte direto com os tutores e os certificados são liberados após o encerramento do último módulo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Depoimentos Bege / Amarelo -->
+    <section class="testimonials-beige-section">
+        <div class="container">
+            <span class="sub-label">DEPOIMENTOS</span>
+            <h2>Quem fez recomenda</h2>
+            
+            <div class="testimonials-carousel-wrapper">
+                <div id="testimonialsCarousel" class="testimonials-carousel">
+                    <div class="testimonial-card white-card">
+                        <p>“A experiência do curso foi incrível! As aulas foram muito bem estruturadas e o cronograma foi cuidadosamente planejado, facilitando muito o aprendizado.”</p>
+                        <div class="author-info">
+                            <strong>Lucas Pereira</strong>
+                            <span>Analista na Empresa X</span>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card white-card">
+                        <p>“Concluir o curso foi uma jornada enriquecedora. As aulas eram dinâmicas e o horário foi organizado para maximizar nosso tempo de estudo.”</p>
+                        <div class="author-info">
+                            <strong>Mariana Costa</strong>
+                            <span>Gestora na Empresa X</span>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card white-card">
+                        <p>“O curso superou minhas expectativas! As aulas eram bem elaboradas e o planejamento do horário ajudou a manter o foco e a produtividade.”</p>
+                        <div class="author-info">
+                            <strong>Thiago Almeida</strong>
+                            <span>Técnico na Empresa X</span>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card white-card">
+                        <p>“Finalizar o curso foi uma experiência motivadora. As aulas foram muito bem preparadas e o cronograma foi ideal para o aprendizado.”</p>
+                        <div class="author-info">
+                            <strong>Fernanda Silva</strong>
+                            <span>Analista na Empresa X</span>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card white-card">
+                        <p>“A conclusão do curso foi uma etapa muito gratificante. As aulas eram bem organizadas e o horário foi pensado para facilitar nosso aprendizado.”</p>
+                        <div class="author-info">
+                            <strong>Gabriel Santos</strong>
+                            <span>Analista na Empresa X</span>
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonials-nav-btns dark-arrows">
+                <button id="testimonialPrevBtn" type="button"><i class="fa-solid fa-arrow-left"></i></button>
+                <button id="testimonialNextBtn" type="button"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Fale com a Gente -->
+    <section class="cta-talk-banner">
+        <div class="container text-center">
+            <span class="sub-label-light">PRECISA DE AJUDA PARA DECIDIR?</span>
+            <h2>Fale com a gente</h2>
+            <a href="#" class="btn-cta-white">Mandar uma mensagem <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Rodapé Dark -->
+    <footer class="footer-dark">
+        <div class="container footer-grid">
+            <div class="footer-col brand-col">
+                <img src="assets/logo-sesi-industria-white.svg" alt="SESI + Indústria Logo" class="footer-logo">
+                <p>contato@sesindustria.com.br</p>
+                <p>Av. Paulista, 1313</p>
+            </div>
+            <div class="footer-col">
+                <h4>NAVEGAÇÃO</h4>
+                <ul>
+                    <li><a href="index.html#inicio">Início</a></li>
+                    <li><a href="#">Certificação</a></li>
+                    <li><a href="index.html#cursos">Cursos</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>CURSOS POPULARES</h4>
+                <ul>
+                    <li><a href="#">Cultura Organizacional</a></li>
+                    <li><a href="#">Ferramentas Google para Produtividade</a></li>
+                    <li><a href="#">Excel Básico ao Avançado</a></li>
+                    <li><a href="#">Trabalho em Equipe e Colaboração</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>SUPORTE</h4>
+                <ul>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <div class="copyright">
+                <img src="assets/logo-sesi.svg" alt="SESI Logo" class="mini-logo">
+                <span>Todos os direitos reservados.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Balão Flutuante Fixo (Floating Bottom Bar) -->
+    <div class="floating-enroll-bar" id="floatingEnrollBar">
+        <div class="container floating-flex">
+            <span id="floatingCourseName">Desenvolvimento Web com ASP.NET Core</span>
+            <a href="#matricula" class="btn-floating-enroll">Matricule-se <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <script src="curso-script.js"></script>
+</body>
+</html>

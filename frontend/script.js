@@ -31,7 +31,7 @@ const mockCursos = [
         cargaHoraria: 60,
         publicoAlvo: "Estudantes e desenvolvedores iniciantes",
         status: "Disponível",
-        imagemUrl: "https://via.placeholder.com/300x200?text=ASP.NET+Core"
+        imagemUrl: "assets/curso-aspnet.png"
     },
     {
         id: 2,
@@ -43,7 +43,7 @@ const mockCursos = [
         cargaHoraria: 40,
         publicoAlvo: "Profissionais de TI e entusiastas",
         status: "Disponível",
-        imagemUrl: "https://via.placeholder.com/300x200?text=SQL"
+        imagemUrl: "assets/curso-sql.png"
     },
     {
         id: 3,
@@ -55,7 +55,7 @@ const mockCursos = [
         cargaHoraria: 30,
         publicoAlvo: "Gestores, líderes de equipa e Scrum Masters",
         status: "Em Breve",
-        imagemUrl: "https://via.placeholder.com/300x200?text=Scrum"
+        imagemUrl: "assets/curso-scrum.png"
     },
     {
         id: 4,
@@ -67,7 +67,7 @@ const mockCursos = [
         cargaHoraria: 50,
         publicoAlvo: "Designers e front-end developers",
         status: "Disponível",
-        imagemUrl: "https://via.placeholder.com/300x200?text=UX+UI"
+        imagemUrl: "assets/curso-ux-ui.png"
     },
     {
         id: 5,
@@ -79,7 +79,7 @@ const mockCursos = [
         cargaHoraria: 20,
         publicoAlvo: "Colaboradores e equipas administrativas",
         status: "Encerrado",
-        imagemUrl: "https://via.placeholder.com/300x200?text=Seguranca"
+        imagemUrl: "assets/curso-seguranca.png"
     },
     {
         id: 6,
@@ -91,7 +91,7 @@ const mockCursos = [
         cargaHoraria: 16,
         publicoAlvo: "Líderes de equipa e gestores",
         status: "Em Breve",
-        imagemUrl: "https://via.placeholder.com/300x200?text=Lideranca"
+        imagemUrl: "assets/curso-lideranca.png"
     }
 ];
 
@@ -151,6 +151,7 @@ async function fetchCursos() {
     }
 }
 
+// Substitua a função renderCursos no script.js
 function renderCursos(cursos) {
     coursesGrid.innerHTML = '';
     resultsCount.textContent = `Exibindo ${cursos.length} curso(s)`;
@@ -162,23 +163,37 @@ function renderCursos(cursos) {
 
     showState('content');
 
+    const imagensLocais = {
+        1: "assets/curso-aspnet.png",
+        2: "assets/curso-sql.png",
+        3: "assets/curso-scrum.png",
+        4: "assets/curso-ux-ui.png",
+        5: "assets/curso-seguranca.png",
+        6: "assets/curso-lideranca.png"
+    };
+
     cursos.forEach(curso => {
         const card = document.createElement('article');
         card.className = 'course-card';
+        
+        const imgCaminho = curso.imagemUrl && !curso.imagemUrl.includes('via.placeholder') 
+            ? curso.imagemUrl 
+            : (imagensLocais[curso.id] || "assets/curso-aspnet.png");
+
+        card.style.backgroundImage = `linear-gradient(180deg, rgba(140, 0, 0, 0.25) 0%, rgba(140, 0, 0, 0.92) 55%, #8c0000 100%), url('${imgCaminho}')`;
+
         card.innerHTML = `
             <span class="badge-category">${curso.categoria || 'TECNOLOGIA'}</span>
-            <img src="${curso.imagemUrl}" alt="${curso.nomeCompleto}" class="course-img">
             <div class="course-body">
                 <h3>${curso.nomeCompleto}</h3>
                 <p>${curso.descricao}</p>
-                <button type="button" onclick="openDetails(${curso.id})" class="btn-card-details">Ver detalhes do curso</button>
+                <a href="curso.html?id=${curso.id}" class="btn-card-details">Ver detalhes do curso</a>
             </div>
         `;
         coursesGrid.appendChild(card);
     });
 }
 
-// Torna a função acessível globalmente no HTML
 window.openDetails = async function(id) {
     let curso;
     try {
@@ -240,7 +255,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Controle de cliques nas setas do Carrossel
+// Controle de cliques nas setas do Carrossel de Cursos
 if (prevBtn && nextBtn && coursesGrid) {
     nextBtn.addEventListener('click', () => {
         coursesGrid.scrollBy({ left: 300, behavior: 'smooth' });
@@ -248,5 +263,20 @@ if (prevBtn && nextBtn && coursesGrid) {
 
     prevBtn.addEventListener('click', () => {
         coursesGrid.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+}
+
+// Controle de cliques nas setas do Carrossel de Depoimentos
+const testimonialsCarousel = document.getElementById('testimonialsCarousel');
+const testimonialPrevBtn = document.getElementById('testimonialPrevBtn');
+const testimonialNextBtn = document.getElementById('testimonialNextBtn');
+
+if (testimonialPrevBtn && testimonialNextBtn && testimonialsCarousel) {
+    testimonialNextBtn.addEventListener('click', () => {
+        testimonialsCarousel.scrollBy({ left: 280, behavior: 'smooth' });
+    });
+
+    testimonialPrevBtn.addEventListener('click', () => {
+        testimonialsCarousel.scrollBy({ left: -280, behavior: 'smooth' });
     });
 }
