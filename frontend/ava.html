@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambiente Virtual de Aprendizagem - SESI + Indústria</title>
+    <link rel="stylesheet" href="ava-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="ava-layout">
+        <!-- Sidebar Esquerda (Preta) -->
+        <aside class="ava-sidebar">
+            <div class="sidebar-top">
+                <a href="javascript:history.back()" class="back-arrow" aria-label="Voltar"><i class="fa-solid fa-arrow-left"></i></a>
+                <span class="cert-label">CERTIFICAÇÃO</span>
+                <h2 id="avaCourseTitle">Carregando curso...</h2>
+                
+                <div class="progress-box">
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill" style="width: 10%;"></div>
+                    </div>
+                    <span class="progress-text">10%</span>
+                </div>
+            </div>
+
+            <div class="sidebar-search">
+                <input type="text" placeholder="Pesquisar..." aria-label="Pesquisar conteúdo">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <nav class="sidebar-menu">
+                <div class="menu-section active">
+                    <div class="module-title">1. Introdução</div>
+                    <ul class="sub-menu">
+                        <li class="completed"><i class="fa-solid fa-circle-check"></i> 1.1 Introdução</li>
+                        <li class="active"><i class="fa-solid fa-circle-play"></i> 1.2 Boas práticas</li>
+                        <li><i class="fa-regular fa-circle"></i> 1.3 Extras</li>
+                    </ul>
+                </div>
+                <div class="menu-section">
+                    <div class="module-title">2. Módulo 1</div>
+                </div>
+                <div class="menu-section">
+                    <div class="module-title">3. Módulo 2</div>
+                </div>
+                <div class="menu-section">
+                    <div class="module-title">4. Módulo 3</div>
+                </div>
+                <div class="menu-section">
+                    <div class="module-title">5. Módulo 4</div>
+                </div>
+                <div class="menu-section">
+                    <div class="module-title">6. Módulo 5</div>
+                </div>
+                <div class="menu-section">
+                    <div class="module-title">7. Módulo 6</div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Conteúdo Principal (Direita - Fundo Branco) -->
+        <main class="ava-content">
+            <div class="content-banner">
+                <img id="avaBannerImg" src="assets/curso-aspnet.png" alt="Capa do curso">
+                <div class="banner-logo-sesi">SESI</div>
+            </div>
+
+            <div class="content-text-body">
+                <h2>Boas práticas</h2>
+                <p>Se você está interessado em se aprofundar no conteúdo, especialmente em metodologias e práticas aplicadas à indústria, aqui estão algumas dicas para maximizar sua experiência online. Primeiro, crie um espaço de estudo livre de distrações, onde você possa se concentrar totalmente no material.</p>
+                <p>Estabeleça uma rotina de estudos, reservando horários específicos para assistir às aulas e realizar as atividades. Além disso, interaja com seus colegas e instrutores nos fóruns e chats disponíveis, pois isso enriquece o aprendizado e ajuda a esclarecer dúvidas. Não se esqueça de revisar o conteúdo regularmente e aplicar os conhecimentos em situações práticas sempre que possível.</p>
+                <p>Por fim, mantenha-se atualizado sobre as novas técnicas e normas do setor, já que esta área está sempre evoluindo. Com dedicação e as estratégias corretas, você estará preparado para se destacar no mercado!</p>
+
+                <h2>Recomendações</h2>
+                <p>Se você está interessado em dominar as ferramentas práticas, aqui estão algumas dicas valiosas. Primeiro, escolha módulos que ofereçam uma abordagem direta com estudos de caso reais. Isso ajudará a entender como aplicar conceitos teóricos no dia a dia da indústria.</p>
+                <p>Outro aspecto importante é a experiência dos instrutores. Procure absorver os insights compartilhados durante as videoaulas, pois eles vão muito além dos manuais tradicionais.</p>
+                <p>Considere também a flexibilidade da sua rotina de estudos. Com dedicação e foco, você garantirá alta performance e eficiência nas entregas dos seus projetos.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="ava-script.js"></script>
+</body>
+</html>

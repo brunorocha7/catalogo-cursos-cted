@@ -115,3 +115,7 @@ if (testimonialPrevBtn && testimonialNextBtn && testimonialsCarousel) {
         testimonialsCarousel.scrollBy({ left: -280, behavior: 'smooth' });
     });
 }
+
+const courseId = new URLSearchParams(window.location.search).get('id') || 1;
+document.getElementById('enrollBtn').href = `ava.html?id=${courseId}`;
+document.getElementById('floatingEnrollBtn').href = `ava.html?id=${courseId}`;

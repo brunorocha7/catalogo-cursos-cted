@@ -1,0 +1,263 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #111111;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.ava-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    height: 100vh;
+}
+
+/* --- SIDEBAR ESQUERDA (PRETA) --- */
+.ava-sidebar {
+    background-color: #0d0d0d;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    border-right: 1px solid #222;
+}
+
+.sidebar-top {
+    padding: 25px 20px 15px 20px;
+}
+
+.back-arrow {
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 15px;
+    transition: opacity 0.2s;
+}
+
+.back-arrow:hover {
+    opacity: 0.8;
+}
+
+.cert-label {
+    font-size: 0.68rem;
+    letter-spacing: 1.2px;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.sidebar-top h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.progress-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.progress-bar-bg {
+    flex-grow: 1;
+    background-color: #333333;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background-color: #ffffff;
+    height: 100%;
+    border-radius: 3px;
+}
+
+.progress-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+/* Campo de Pesquisa na Sidebar */
+.sidebar-search {
+    position: relative;
+    padding: 10px 20px;
+}
+
+.sidebar-search input {
+    width: 100%;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    padding: 10px 15px 10px 35px;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.sidebar-search input:focus {
+    border-color: #b30000;
+}
+
+.sidebar-search i {
+    position: absolute;
+    left: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 0.85rem;
+}
+
+/* Menu de Módulos */
+.sidebar-menu {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px 0 20px 0;
+}
+
+.sidebar-menu::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar-menu::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 2px;
+}
+
+.menu-section {
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.module-title {
+    padding: 14px 20px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #cccccc;
+    cursor: pointer;
+}
+
+.sub-menu {
+    list-style: none;
+    background-color: #080808;
+    display: none;
+}
+
+.menu-section.active .sub-menu {
+    display: block;
+}
+
+.sub-menu li {
+    padding: 10px 20px 10px 35px;
+    font-size: 0.85rem;
+    color: #999999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sub-menu li:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.sub-menu li.active {
+    color: #ffffff;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.sub-menu li.completed {
+    color: #cccccc;
+}
+
+.sub-menu li i {
+    font-size: 0.9rem;
+}
+
+.sub-menu li.completed i {
+    color: #4cd137;
+}
+
+.sub-menu li.active i {
+    color: #0094ff;
+}
+
+/* --- CONTEÚDO PRINCIPAL (DIREITA) --- */
+.ava-content {
+    background-color: #ffffff;
+    overflow-y: auto;
+    padding: 40px 60px;
+}
+
+.content-banner {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 220px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.content-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-logo-sesi {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #b30000;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 5px 12px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+.content-text-body h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #111111;
+    margin-bottom: 18px;
+    margin-top: 30px;
+}
+
+.content-text-body h2:first-child {
+    margin-top: 0;
+}
+
+.content-text-body p {
+    font-size: 1rem;
+    color: #444444;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 900px) {
+    .ava-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: auto;
+    }
+    .ava-sidebar {
+        height: auto;
+    }
+    .ava-content {
+        padding: 20px;
+    }
+}
