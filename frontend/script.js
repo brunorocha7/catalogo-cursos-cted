@@ -16,6 +16,9 @@ const modal = document.getElementById('courseModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const modalBody = document.getElementById('modalBody');
 
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
 // Dados fictícios de Fallback caso a API esteja offline/hibernando
 const mockCursos = [
     {
@@ -136,7 +139,6 @@ async function fetchCursos() {
         const cursos = await response.json();
         renderCursos(cursos);
     } catch (err) {
-        // Usa os dados locais caso a API falhe ou demore para responder
         let resultado = mockCursos.filter(c => {
             const matchesNome = !nomeVal || c.nomeCompleto.toLowerCase().includes(nomeVal) || c.nomeBreve.toLowerCase().includes(nomeVal);
             const matchesCat = !catVal || c.categoria.toLowerCase() === catVal;
@@ -164,16 +166,12 @@ function renderCursos(cursos) {
         const card = document.createElement('article');
         card.className = 'course-card';
         card.innerHTML = `
+            <span class="badge-category">${curso.categoria || 'TECNOLOGIA'}</span>
             <img src="${curso.imagemUrl}" alt="${curso.nomeCompleto}" class="course-img">
-            <div class="course-info">
-                <span class="badge ${curso.status.toLowerCase().replace(' ', '-')}">${curso.status}</span>
-                <h3>${curso.nomeBreve}</h3>
+            <div class="course-body">
+                <h3>${curso.nomeCompleto}</h3>
                 <p>${curso.descricao}</p>
-                <div class="meta">
-                    <span><strong>Categoria:</strong> ${curso.categoria}</span>
-                    <span><strong>Carga Horária:</strong> ${curso.cargaHoraria}h</span>
-                </div>
-                <button type="button" onclick="openDetails(${curso.id})" class="details-btn">Ver Detalhes</button>
+                <button type="button" onclick="openDetails(${curso.id})" class="btn-card-details">Ver detalhes do curso</button>
             </div>
         `;
         coursesGrid.appendChild(card);
@@ -224,6 +222,31 @@ function showState(state) {
     loadingState.style.display = state === 'loading' ? 'block' : 'none';
     errorState.style.display = state === 'error' ? 'block' : 'none';
     emptyState.style.display = state === 'empty' ? 'block' : 'none';
-    coursesGrid.style.display = state === 'content' ? 'grid' : 'none';
+    coursesGrid.style.display = state === 'content' ? 'flex' : 'none';
     if (state !== 'content') resultsCount.textContent = '';
+}
+
+// Efeito de troca do Header no Scroll
+const navbar = document.getElementById('navbar');
+const navbarLogo = document.getElementById('navbarLogo');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+        if (navbarLogo) navbarLogo.src = 'assets/logo-sesi-industria-primary.svg';
+    } else {
+        navbar.classList.remove('scrolled');
+        if (navbarLogo) navbarLogo.src = 'assets/logo-sesi-industria-white.svg';
+    }
+});
+
+// Controle de cliques nas setas do Carrossel
+if (prevBtn && nextBtn && coursesGrid) {
+    nextBtn.addEventListener('click', () => {
+        coursesGrid.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+        coursesGrid.scrollBy({ left: -300, behavior: 'smooth' });
+    });
 }

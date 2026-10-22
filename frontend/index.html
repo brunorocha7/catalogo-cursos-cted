@@ -3,119 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Cursos - CTED</title>
+    <title>SESI + Indústria - Cursos e Capacitação</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Ícones FontAwesome para redes sociais e setas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header class="header-container">
-        <img src="assets/logo-sesi-industria-primary.svg" alt="Logo SESI + Indústria" class="logo-header">
-        <h1>Catálogo de Cursos CTED</h1>
+
+    <!-- Header / Navbar Superior -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="brand-logo">
+                <img id="navbarLogo" src="assets/logo-sesi-industria-white.svg" alt="SESI + Indústria">
+            </div>
+            <nav class="nav-links">
+                <a href="#inicio" class="active">Início</a>
+                <a href="#cursos">Cursos</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#" class="btn-area-aluno">Área do aluno</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="container">
-          <section class="features-section">
-            <div class="feature-card">
-                <img src="assets/01-certificacao-red.svg" alt="Ícone Certificação" class="feature-icon">
-                <div class="feature-text">
-                    <h4>Certificados Reconhecidos</h4>
-                    <p>Emissão de certificado após conclusão.</p>
-                </div>
-            </div>
+    <!-- Hero Banner -->
+    <section id="inicio" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Impulsione<br>sua carreira<br>na indústria</h1>
+            <p>Amplie seus conhecimentos com excelência na melhor plataforma de estudos da indústria brasileira</p>
+            <a href="#cursos" class="btn-hero">Conhecer cursos <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </section>
 
-            <div class="feature-card">
-                <img src="assets/02-professores-red.svg" alt="Ícone Professores" class="feature-icon">
-                <div class="feature-text">
-                    <h4>Corpo Docente Qualificado</h4>
-                    <p>Aulas com especialistas da indústria.</p>
-                </div>
-            </div>
+    <!-- Seção Catálogo de Cursos & Filtros -->
+    <section id="cursos" class="courses-section container">
+        <div class="section-title">
+            <h2>Principais cursos</h2>
+        </div>
 
-            <div class="feature-card">
-                <img src="assets/03-suporte-red.svg" alt="Ícone Suporte" class="feature-icon">
-                <div class="feature-text">
-                    <h4>Suporte Dedicado</h4>
-                    <p>Atendimento e tira-dúvidas contínuo.</p>
-                </div>
-            </div>
-
-            <div class="feature-card">
-                <img src="assets/04-flexibilidade-bege.svg" alt="Ícone Flexibilidade" class="feature-icon">
-                <div class="feature-text">
-                    <h4>Aprenda no Seu Ritmo</h4>
-                    <p>Acesso flexível a qualquer momento.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Galeria de Banners/Imagens Ilustrativas -->
-        <section class="gallery-section">
-            <div class="gallery-item">
-                <img src="assets/banner-ava.png" alt="Aulas Práticas de Indústria">
-            </div>
-            <div class="gallery-item">
-                <img src="assets/hero-image.png" alt="Processos Industriais">
-            </div>
-            <div class="gallery-item">
-                <img src="assets/video-thumb.png" alt="Treinamento Técnico">
-            </div>
-        </section>
-
-        <!-- Secção de Filtros e Pesquisa -->
-        <section class="filters-section" aria-label="Filtros de pesquisa">
+        <!-- Filtros Integrados -->
+        <div class="filters-container">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Pesquisar por nome do curso..." aria-label="Pesquisar curso por nome">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Pesquisar por nome do curso..." aria-label="Pesquisar curso">
             </div>
-
             <div class="select-filters">
                 <select id="categoriaFilter" aria-label="Filtrar por Categoria">
                     <option value="">Todas as Categorias</option>
                     <option value="Tecnologia">Tecnologia</option>
                     <option value="Gestão">Gestão</option>
                     <option value="Design">Design</option>
+                    <option value="Matemática">Matemática</option>
                 </select>
-
                 <select id="modalidadeFilter" aria-label="Filtrar por Modalidade">
                     <option value="">Todas as Modalidades</option>
                     <option value="EAD">EAD</option>
                     <option value="Presencial">Presencial</option>
                 </select>
-
                 <select id="statusFilter" aria-label="Filtrar por Status">
                     <option value="">Todos os Status</option>
                     <option value="Disponível">Disponível</option>
                     <option value="Em Breve">Em Breve</option>
                     <option value="Encerrado">Encerrado</option>
                 </select>
-
-                <button id="clearFiltersBtn" type="button">Limpar Filtros</button>
+                <button id="clearFiltersBtn" type="button"><i class="fa-solid fa-rotate-left"></i> Limpar</button>
             </div>
-        </section>
-
-        <!-- Indicador de Resultados e Estados da Interface -->
-        <div class="results-info">
-            <span id="resultsCount">Carregando cursos...</span>
         </div>
 
-        <div id="loadingState" class="state-message" style="display: none;">
-            <p>Carregando catálogo...</p>
+        <div id="resultsCount" class="results-info"></div>
+
+        <div id="loadingState" class="state-message" style="display: none;">Carregando cursos do servidor...</div>
+        <div id="errorState" class="state-message" style="display: none;">Não foi possível carregar os cursos. Tente novamente mais tarde.</div>
+        <div id="emptyState" class="state-message" style="display: none;">Nenhum curso encontrado com os filtros selecionados.</div>
+
+        <!-- Carrossel de Cursos -->
+        <div class="carousel-wrapper">
+            <div id="coursesGrid" class="courses-carousel"></div>
         </div>
 
-        <div id="errorState" class="state-message error" style="display: none;">
-            <p>Ocorreu um erro ao carregar os cursos. Certifique-se de que a API está a rodar.</p>
+        <!-- Barra Inferior com Botão e Setas de Navegação -->
+        <div class="carousel-controls">
+            <a href="#cursos" class="btn-see-all">Ver todos os cursos</a>
+            <div class="carousel-nav-btns">
+                <button id="prevBtn" type="button" aria-label="Anterior"><i class="fa-solid fa-arrow-left"></i></button>
+                <button id="nextBtn" type="button" aria-label="Próximo"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
         </div>
+    </section>
 
-        <div id="emptyState" class="state-message" style="display: none;">
-            <p>Nenhum curso encontrado com os filtros selecionados.</p>
+    <!-- Seção Impacto Transformador / Estatísticas -->
+    <section id="sobre" class="impact-section container">
+        <div class="impact-header">
+            <h2>Impacto<br>transformador</h2>
+            <p>Resultados que demonstram o sucesso da nossa metodologia de capacitação contínua para a indústria</p>
         </div>
+        <div class="impact-stats">
+            <div class="stat-item">
+                <h3>25.000+</h3>
+                <span>Profissionais Capacitados</span>
+            </div>
+            <div class="stat-item">
+                <h3>500+</h3>
+                <span>Empresas parceiras</span>
+            </div>
+            <div class="stat-item">
+                <h3>4.8/5</h3>
+                <span>Avaliação média</span>
+            </div>
+            <div class="stat-item">
+                <h3>2.5M+</h3>
+                <span>Horas de capacitação</span>
+            </div>
+        </div>
+    </section>
 
-        <!-- Lista de Cursos -->
-        <section id="coursesGrid" class="courses-grid" aria-label="Lista de cursos"></section>
-    </main>
+    <!-- Seção Diferenciais SESI -->
+    <section class="features-section container">
+        <div class="feature-card">
+            <img src="assets/01-certificacao-red.svg" alt="Certificação SESI" class="feature-icon">
+            <div class="feature-text">
+                <h4>Certificação SESI</h4>
+                <p>Reconhecimento oficial em todo o território nacional.</p>
+            </div>
+        </div>
+        <div class="feature-card">
+            <img src="assets/02-professores-red.svg" alt="Professores Especialistas" class="feature-icon">
+            <div class="feature-text">
+                <h4>Professores especialistas</h4>
+                <p>Aulas ministradas por profissionais do mercado industrial.</p>
+            </div>
+        </div>
+        <div class="feature-card">
+            <img src="assets/03-suporte-red.svg" alt="Suporte Contínuo" class="feature-icon">
+            <div class="feature-text">
+                <h4>Suporte contínuo</h4>
+                <p>Acompanhamento e tutoria durante todo o curso.</p>
+            </div>
+        </div>
+    </section>
 
-    <!-- Modal de Detalhes do Curso -->
-    <div id="courseModal" class="modal" style="display: none;" role="dialog" aria-modal="true" aria-hidden="true">
+    <!-- Seção Depoimentos -->
+    <section class="testimonials-section">
+        <div class="container">
+            <span class="sub-label">DEPOIMENTOS</span>
+            <h2>Quem fez recomenda</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>“A experiência do curso foi incrível! As aulas foram muito bem estruturadas e o cronograma foi cuidadosamente planejado, facilitando muito o aprendizado.”</p>
+                    <div class="author-info">
+                        <strong>Lucas Pereira</strong>
+                        <span>Analista na Empresa X</span>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>“Concluir o curso foi uma jornada enriquecedora. As aulas eram dinâmicas e o horário foi organizado para maximizar nosso tempo de estudo.”</p>
+                    <div class="author-info">
+                        <strong>Mariana Costa</strong>
+                        <span>Gestora na Empresa X</span>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>“O curso superou minhas expectativas! As aulas eram bem elaboradas e o planejamento do horário ajudou a manter o foco e a produtividade.”</p>
+                    <div class="author-info">
+                        <strong>Thiago Almeida</strong>
+                        <span>Técnico na Empresa X</span>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>“Finalizar o curso foi uma experiência motivadora. As aulas foram muito bem preparadas e o cronograma foi ideal para o aprendizado.”</p>
+                    <div class="author-info">
+                        <strong>Fernanda Silva</strong>
+                        <span>Analista na Empresa X</span>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Call To Action (Vídeo/Aulas) -->
+    <section class="cta-section">
+        <div class="container cta-flex">
+            <div class="cta-content">
+                <h2>Pronto para transformar sua carreira?</h2>
+                <p>Junte-se a milhares de profissionais que já estão transformando a indústria através dos nossos cursos. Invista no seu futuro hoje mesmo!</p>
+                <a href="#cursos" class="btn-cta">Matricule-se <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="cta-media">
+                <img src="assets/video-thumb.png" alt="Aulas práticas na indústria">
+                <div class="play-btn-overlay">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé Dark -->
+    <footer class="footer-dark">
+        <div class="container footer-grid">
+            <div class="footer-col brand-col">
+                <img src="assets/logo-sesi-industria-white.svg" alt="SESI + Indústria Logo White" class="footer-logo">
+                <p>contato@sesindustria.com.br</p>
+                <p>Av. Paulista, 1313</p>
+            </div>
+            <div class="footer-col">
+                <h4>NAVEGAÇÃO</h4>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#">Certificação</a></li>
+                    <li><a href="#cursos">Cursos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>CURSOS POPULARES</h4>
+                <ul>
+                    <li><a href="#">Cultura Organizacional</a></li>
+                    <li><a href="#">Ferramentas Google para Produtividade</a></li>
+                    <li><a href="#">Excel Básico ao Avançado</a></li>
+                    <li><a href="#">Trabalho em Equipe e Colaboração</a></li>
+                    <li><a href="#">Gestão do Tempo e Produtividade</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>SUPORTE</h4>
+                <ul>
+                    <li><a href="#">Termos de Uso</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                    <li><a href="#">Fale Conosco</a></li>
+                    <li><a href="#">Central de Ajuda</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <div class="copyright">
+                <img src="assets/logo-sesi.svg" alt="SESI Logo" class="mini-logo">
+                <span>Todos os direitos reservados.</span>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Detalhes -->
+    <div id="courseModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="modal-content">
-            <button class="close-btn" id="closeModalBtn" aria-label="Fechar detalhes">&times;</button>
+            <button id="closeModalBtn" class="close-btn" aria-label="Fechar Modal">&times;</button>
             <div id="modalBody"></div>
         </div>
     </div>
