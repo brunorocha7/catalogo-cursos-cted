@@ -91,7 +91,8 @@ dotnet run
 
 ```
 
-A API estará rodando em `http://localhost:5092/api/Cursos`. A documentação Swagger pode ser acessada em `http://localhost:5092/swagger`.
+A API estará rodando em [localhost:5092/api/Cursos](http://localhost:5092/api/Cursos). A documentação Swagger pode ser acessada no [Swagger UI (localhost:5092/swagger)](http://localhost:5092/swagger).
+
 
 3. **Executando o Front-end sem extensoes (Modo Direto)**
 
