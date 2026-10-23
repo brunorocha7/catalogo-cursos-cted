@@ -91,12 +91,16 @@ dotnet run
 
 ```
 
-A API estará rodando em `http://localhost:5092`. A documentação Swagger pode ser acessada em `http://localhost:5092/swagger`.
+A API estará rodando em `http://localhost:5092/api/Cursos`. A documentação Swagger pode ser acessada em `http://localhost:5092/swagger`.
 
-3. **Executar o Front-end:**
-Abra os arquivos HTML localizados na pasta `frontend/` (`index.html`, `curso.html` ou `ava.html`) em qualquer navegador web (ou utilize a extensão Live Server do VS Code).
+3. **Executando o Front-end sem extensoes (Modo Direto)**
 
-## 6. Configuração do Banco de Dados
+Caso não esteja utilizando a extensão *Live Server* ou outro servidor local, você pode abrir as telas do projeto diretamente no seu navegador:
+
+1. Navegue até a pasta `frontend` pelo seu **Explorador de Arquivos** (Windows) ou **Finder** (Mac).
+2. Dê um duplo clique no arquivo **`index.html`** (ou clique com o botão direito e selecione **Abrir com > Google Chrome / Microsoft Edge / Firefox**).
+
+> **Nota:** Como o projeto possui suporte a *fallback* (dados simulação local), o catálogo funcionará normalmente mesmo sendo aberto via protocolo de arquivo local (`file:///`).
 
 O banco de dados **SQLite** (`cursos.db`) é configurado e inicializado automaticamente pelo Entity Framework Core na inicialização da aplicação (`AppDbContext.cs`).
 
