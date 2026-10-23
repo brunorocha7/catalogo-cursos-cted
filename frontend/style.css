@@ -389,7 +389,7 @@ a.btn-hero:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 20px;
     padding: 0 5px;
 }
 
@@ -412,27 +412,38 @@ a.btn-hero:hover {
 
 .carousel-nav-btns {
     display: flex;
-    gap: 10px;
-}
-
-.carousel-nav-btns button {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
-    color: #333333;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
+    gap: 15px;
     align-items: center;
-    transition: all 0.2s ease;
 }
 
-.carousel-nav-btns button:hover {
-    background-color: #e5e5e5;
-    color: #b30000;
+/* Correção e estilização das setas de navegação do carrossel principal */
+.carousel-nav-btns button,
+.carousel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    padding: 0;
+    width: auto;
+    height: auto;
+    transition: opacity 0.2s;
+}
+
+.carousel-nav-btns button img,
+.carousel-btn img {
+    width: 38px !important;
+    height: 38px !important;
+    display: block;
+    object-fit: contain;
+}
+
+.carousel-nav-btns button:hover,
+.carousel-btn:hover {
+    opacity: 0.7;
+    background: transparent !important;
 }
 
 /* --- SEÇÃO IMPACTO TRANSFORMADOR (ESPAÇOS ENTRE LINHAS REDUZIDOS) --- */
@@ -508,7 +519,6 @@ a.btn-hero:hover {
 }
 
 .feature-icon {
-
     object-fit: contain;
 }
 
@@ -614,7 +624,7 @@ a.btn-hero:hover {
     letter-spacing: 2px;
 }
 
-/* Setas de navegação */
+/* Setas de navegação de depoimentos */
 .testimonials-nav-btns {
     display: flex;
     justify-content: flex-end;
@@ -699,7 +709,6 @@ a.btn-cta:hover {
     width: 100%;
 }
 
-/* Imagem mais escura conforme solicitado */
 .cta-media img {
     width: 100%;
     height: 100% !important;
@@ -931,36 +940,4 @@ header.navbar.scrolled .hamburger-btn {
 header.navbar {
     border-bottom: none !important;
     box-shadow: none !important;
-}
-
-/* Setas de navegação */
-.carousel-nav-btns button,
-.carousel-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    cursor: pointer;
-    padding: 0;
-    width: auto;
-    height: auto;
-    transition: opacity 0.2s;
-}
-
-.carousel-nav-btns button img,
-.carousel-btn img {
-    width: 38px !important;
-    height: 38px !important;
-    display: block;
-    object-exit: contain;
-    transform: scale(0.85); /* Deixa as setas mais finas e refinadas */
-    filter: brightness(0) invert(1);
-}
-
-.carousel-nav-btns button:hover,
-.carousel-btn:hover {
-    opacity: 0.7;
-    background: transparent !important;
 }
