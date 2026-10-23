@@ -144,9 +144,9 @@ Caso o arquivo do banco não exista, o EF Core cria a estrutura de tabelas e pop
 
 ## 13. Relação de Entregáveis e Links Oficiais
 
-1. **Link do Repositório no GitHub:** [https://github.com/brunorocha7/catalogo-cursos-cted](https://www.google.com/search?q=https://github.com/brunorocha7/catalogo-cursos-cted)
-2. **Link da Aplicação Publicada (Front-end):** [https://brunorocha7.github.io/catalogo-cursos-cted/frontend/index.html](https://www.google.com/url?sa=E&source=gmail&q=https://brunorocha7.github.io/catalogo-cursos-cted/)
-3. **Link da API Publicada (Render):** [https://catalogo-cursos-api.onrender.com/api/cursos](https://www.google.com/url?sa=E&source=gmail&q=https://catalogo-cursos-api.onrender.com/api/cursos)
+1. **Link do Repositório no GitHub:** [https://github.com/brunorocha7/catalogo-cursos-cted](https://github.com/brunorocha7/catalogo-cursos-cted)
+2. **Link da Aplicação Publicada (Front-end):** [https://brunorocha7.github.io/catalogo-cursos-cted/frontend/index.html](https://brunorocha7.github.io/catalogo-cursos-cted/frontend/index.html)
+3. **Link da API Publicada (Render):** [https://catalogo-cursos-api.onrender.com/api/cursos](https://catalogo-cursos-api.onrender.com/api/cursos)
 4. **Código-fonte:** Disponível no repositório com as pastas `/backend` e `/frontend` estruturadas.
 5. **Arquivo README.md:** Presente na raiz do repositório.
 6. **Arquivo USO_DE_IA.md:** Presente na raiz do repositório.
