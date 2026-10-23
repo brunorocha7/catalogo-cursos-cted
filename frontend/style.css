@@ -914,3 +914,8 @@ header.navbar.scrolled .hamburger-btn {
     color: #ffffff;
     border-color: #ffffff;
 }
+
+/* Garante que o logo fica branco quando a navbar está no topo (fundo vermelho) */
+.navbar:not(.scrolled) .brand-logo img {
+    filter: brightness(0) invert(1);
+}
