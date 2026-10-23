@@ -78,7 +78,7 @@ Desafio Sesi/
 1. **Clonar o Repositório:**
 
 ```bash
-git clone [https://github.com/brunorocha7/catalogo-cursos-cted.git](https://github.com/brunorocha7/catalogo-cursos-cted.git)
+git clone https://github.com/brunorocha7/catalogo-cursos-cted.git
 cd catalogo-cursos-cted
 
 ```
