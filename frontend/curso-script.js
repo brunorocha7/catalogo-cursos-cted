@@ -81,15 +81,23 @@ async function loadCourseDetail() {
         curso = mockCursos.find(c => c.id === courseId) || mockCursos[0];
     }
 
-    // Preenche a página dinamicamente
+    // Preenche os dados dinamicamente na página
     document.getElementById('courseCategoryBadge').textContent = (curso.categoria || 'TECNOLOGIA').toUpperCase();
     document.getElementById('courseTitle').textContent = curso.nomeCompleto;
     document.getElementById('courseAboutDescription').textContent = `${curso.descricao} Este programa foi cuidadosamente elaborado para capacitar profissionais e estudantes com foco no mercado industrial.`;
     document.getElementById('floatingCourseName').textContent = curso.nomeCompleto;
 
-    if (curso.imagemUrl) {
-        document.getElementById('courseMediaThumb').src = curso.imagemUrl;
+    // Utiliza a imagem fixa do vídeo em todos os cursos
+    const courseMediaThumb = document.getElementById('courseMediaThumb');
+    if (courseMediaThumb) {
+        courseMediaThumb.src = "assets/video-thumb.png";
     }
+
+    // Atualiza os links de matrícula para o AVA com o ID correto do curso
+    const enrollBtn = document.getElementById('enrollBtn');
+    const floatingEnrollBtn = document.getElementById('floatingEnrollBtn');
+    if (enrollBtn) enrollBtn.href = `ava.html?id=${courseId}`;
+    if (floatingEnrollBtn) floatingEnrollBtn.href = `ava.html?id=${courseId}`;
 }
 
 // Controle do Accordion (Módulos / Dúvidas)
