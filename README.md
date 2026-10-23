@@ -11,7 +11,7 @@ Proporcionar aos usuários uma interface simples, acessível e intuitiva para co
 * **Back-end:** C# / ASP.NET Core Web API (.NET 8.0)
 * **Persistência de Dados:** Entity Framework Core com provedor SQLite
 * **Documentação de API:** Swashbuckle (Swagger UI)
-* **Front-end:** HTML5, CSS3 (Modern Flexbox & Grid) e JavaScript Vanilla (ES6+)
+* **Front-end:** HTML5, CSS3 (Modern Flexbox & Grid), JavaScript Vanilla (ES6+) e tipografia local personalizada (*Open Sans*)
 * **Conteinerização e Deploy:** Docker, Render (Back-end Web Service) e GitHub Pages (Front-end)
 
 ## 3. Arquitetura da Solução
@@ -47,6 +47,11 @@ Desafio Sesi/
 │   └── Program.cs                   # Configuração de serviços, CORS, rotas e middlewares
 ├── frontend/
 │   ├── assets/                      # Imagens, logotipos em SVG e mídias de curso
+│   ├── fonts/                       # Tipografia local personalizada (Open Sans)
+│   │   ├── static/                  # Versões estáticas (Regular, SemiBold, Bold)
+│   │   ├── OFL.txt                  # Licença de fonte aberta (Open Font License)
+│   │   ├── OpenSans-Italic-VariableFont_wdth,wght.ttf
+│   │   └── OpenSans-VariableFont_wdth,wght.ttf
 │   ├── ava-script.js                # Lógica de navegação e módulos do AVA
 │   ├── ava-style.css                # Estilização do painel AVA (sidebar e conteúdo)
 │   ├── ava.html                     # Simulação do Ambiente Virtual de Aprendizagem (AVA)
@@ -71,22 +76,23 @@ Desafio Sesi/
 ### Passo a Passo:
 
 1. **Clonar o Repositório:**
+
 ```bash
 git clone [https://github.com/brunorocha7/catalogo-cursos-cted.git](https://github.com/brunorocha7/catalogo-cursos-cted.git)
 cd catalogo-cursos-cted
 
 ```
 
-
 2. **Executar o Back-end (API C#):**
+
 ```bash
 cd backend
 dotnet run
 
 ```
 
-
 A API estará rodando em `http://localhost:5092`. A documentação Swagger pode ser acessada em `http://localhost:5092/swagger`.
+
 3. **Executar o Front-end:**
 Abra os arquivos HTML localizados na pasta `frontend/` (`index.html`, `curso.html` ou `ava.html`) em qualquer navegador web (ou utilize a extensão Live Server do VS Code).
 
