@@ -1,29 +1,35 @@
 # Registro do Uso de Inteligência Artificial
 
-## Ferramenta Utilizada
-- **Gemini** (Assistente de Inteligência Artificial Generativa)
+## 1. Ferramenta Utilizada
+- **Gemini** (Assistente de Inteligência Artificial Generativa da Google) como copiloto de desenvolvimento para apoio no design, arquitetura, refinamento de código, resolução de conflitos técnicos e estruturação de documentação.
 
-## Objetivo do Uso
-Auxílio no scaffolding e arquitetura inicial da Web API C# (.NET 8.0), estruturação do modelo de dados do Entity Framework Core com SQLite, criação dos scripts responsivos do Front-end (HTML5/CSS3/JS) e apoio na conteinerização com Docker para deploy no Render e GitHub Pages.
+## 2. Objetivo do Uso
+Auxílio no *scaffolding* e na arquitetura inicial da Web API em C# (.NET 8.0), estruturação do modelo de dados do Entity Framework Core com SQLite, desenvolvimento dos estilos e layouts responsivos em Front-end (HTML5, CSS3 Grid/Flexbox e JavaScript Vanilla), refinamento da experiência visual e consistência de design (UI) com base em protótipos, otimização de componentes interativos (carrosséis, acordeões e cartões), suporte na configuração de Dockerfiles, resolução de conflitos de versão e de escopo CSS, além da elaboração e atualização da documentação técnica do projeto.
 
-## Prompts Relevantes
+## 3. Prompts Relevantes (O que foi aproveitado ou descartado)
+
 ### O que foi Aproveitado:
-- **Estruturação do Back-end:** Prompt solicitando configuração do `AppDbContext` e mapeamento de rotas com suporte a múltiplos filtros de busca (nome, categoria, modalidade, status) no `CursosController.cs`.
+- **Estruturação do Back-end e Filtros Combinados:** Solicitação de configuração do `AppDbContext` e mapeamento de rotas no `CursosController.cs` utilizando consultas LINQ avançadas para suportar pesquisas parciais por nome e filtros cruzados opcionais (categoria, modalidade e status).
+- **Implementação de Carrossel Nativo:** Orientações para estruturar carrosséis horizontais fluidos com rolagem suave (`scroll-behavior: smooth`) e ocultação de barras de rolagem nativas (`scrollbar-width: none`), evitando dependências externas pesadas.
+- **Ajustes de Espaçamento do Acordeão (`curso.html`):** Pedido para reduzir o *padding* vertical e otimizar as linhas divisórias das seções de módulos na página de detalhes do curso para alinhar perfeitamente com o layout de referência do Figma.
+- **Largura e Fundo dos Cartões de Depoimento:** Instruções para estilizar o carrossel de depoimentos, fixando a largura dos cartões em `260px` e aplicando com precisão a cor de fundo bege solicitada, isolando os estilos no arquivo específico da página.
+- **Restauração das Setas do Carrossel:** Solicitação para diagnosticar e corrigir o sumiço das setas de navegação do carrossel principal (`index.html`), reajustando os seletores CSS e o posicionamento ao lado do botão de listagem.
+- **Criação e Atualização da Documentação (`README.md`):** Pedido de auxílio na reestruturação do arquivo `README.md`, organizando seções técnicas detalhadas e documentando a nova árvore de diretórios do projeto, com destaque para a pasta de recursos `frontend/fonts/` contendo as fontes tipográficas locais (*Open Sans*).
 - **Dockerização:** Prompt para geração de um `Dockerfile` otimizado em múltiplos estágios para compilar e expor a Web API C#.
-- **Interface e Layout:** Prompts para criação do grid responsivo em CSS e lógica de controle do modal de detalhes com tratamento de estados (carregamento, lista vazia, erro e fallback).
-- **Atualização da Documentação (`README.md`):** Pedido para reestruturar a árvore de diretórios do projeto documentando a nova pasta de recursos `frontend/fonts/` com as fontes tipográficas locais (*Open Sans*).
 
 ### O que foi Descartado:
-- **Autenticação Avançada (JWT/OAuth):** Sugestões de implementação de controle de acesso e login foram descartadas por estarem fora do escopo do desafio.
-- **Bibliotecas/Frameworks Front-end:** Propostas para uso de React ou Vue.js foram descartadas em favor de JavaScript Vanilla, mantendo a solução simples e leve.
+- **Autenticação Avançada (JWT/OAuth):** Sugestões iniciais da IA para inclusão de camadas complexas de segurança e login de utilizadores foram descartadas por estarem fora do escopo funcional estipulado para o desafio.
+- **Frameworks de Front-end:** Propostas para reestruturar a interface utilizando frameworks como React ou Vue.js foram desconsideradas para manter a stack puramente nativa (HTML, CSS e JavaScript Vanilla).
 
-## Como o Conteúdo foi Validado
-1. **Compilação e Execução Local:** Todo código C# foi compilado via .NET CLI (`dotnet build` / `dotnet run`) e validado através da interface Swagger (`http://localhost:5092/swagger`).
-2. **Testes de Integração:** Requisições via `fetch` no Front-end foram testadas para verificar a correta filtragem e deserialização do JSON retornado pela API.
-3. **Inspeção Visual e Responsividade:** Testes em múltiplos tamanhos de tela (desktop e mobile) para validar o CSS Grid, os badges de status e a centralização do modal.
+## 4. Como o Conteúdo foi Validado
+1. **Validação de Código e Execução Local:** Os scripts C# gerados foram compilados e testados via .NET CLI (`dotnet run`) e validados por meio da interface interativa do Swagger (`/swagger`).
+2. **Testes de Integração Front-end:** Validação em ambiente de navegador com a ferramenta de inspecção (DevTools) para verificar requisições assíncronas, consumo da API e funcionamento correto dos filtros, carrosséis e acordeões.
+3. **Testes Visuais e de Responsividade:** Conferência do comportamento do layout em diferentes resoluções de tela e validação rigorosa da fidelidade visual em relação aos protótipos e imagens de referência enviadas durante o processo.
 
-## Exemplo de Erro ou Inadequação Identificado
-- **Erro Incompatibilidade de Versões (.NET e EF Core):** Durante o build da imagem Docker no Render, ocorreu o erro `NU1202` (`Microsoft.EntityFrameworkCore.Sqlite 10.0.13 is not compatible with net8.0`). A IA inicialmente sugeriu pacotes do EF Core na versão `10.0.*`, que são incompatíveis com o *target framework* `.NET 8.0`.
+## 5. Exemplo de Erro ou Inadequação Identificado
+- **Erro 1 (Incompatibilidade de Versões - .NET 8 vs EF Core 10):** Durante a criação inicial dos pacotes do projeto e configuração do contêiner Docker, a IA sugeriu pacotes do Entity Framework Core voltados para a versão `10.0.*`, gerando conflito de compatibilidade (`NU1202`) com o SDK alvo do projeto configurado em `.NET 8.0`.
+- **Erro 2 (Conflito de Especificidade CSS Global):** Regras genéricas definidas no arquivo `style.css` sobrepunham acidentalmente o espaçamento compacto dos acordeões e alteravam a largura fixa dos cartões de depoimento na página de detalhes (`curso.html`).
 
-## Correção Realizada
-Ajuste manual e alinhamento do arquivo `backend/backend.csproj` e do `Dockerfile` para utilizar a versão estável compatível do Entity Framework Core (`8.0.11`) sob o SDK do .NET 8.0, solucionando o problema de compilação na esteira de deploy.
+## 6. Correção Realizada
+- **Correção do Erro 1:** Substituição manual das referências no arquivo `backend.csproj` e no `Dockerfile` para fixar as versões estáveis corretas e totalmente compatíveis com o ecossistema .NET 8 (versão `8.0.11`), restabelecendo com sucesso o build e o deploy automatizado.
+- **Correção do Erro 2:** Utilização de seletores compostos e específicos e aplicação cirúrgica de regras no `curso-style.css` para isolar o escopo visual e garantir a fidelidade exata ao design pretendido sem afetar o restante da aplicação.
