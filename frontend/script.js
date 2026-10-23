@@ -280,3 +280,35 @@ if (testimonialPrevBtn && testimonialNextBtn && testimonialsCarousel) {
         testimonialsCarousel.scrollBy({ left: -280, behavior: 'smooth' });
     });
 }
+
+// Controle do Menu Hambúrguer Mobile
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navLinks = document.getElementById('navLinks');
+
+if (hamburgerBtn && navLinks) {
+    hamburgerBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        
+        // Altera o ícone de barras para um 'X' de fechar e vice-versa
+        const icon = hamburgerBtn.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+        } else {
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Fecha o menu automaticamente ao clicar em qualquer link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            const icon = hamburgerBtn.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+}

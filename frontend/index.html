@@ -14,14 +14,23 @@
     <header class="navbar" id="navbar">
         <div class="nav-container">
             <div class="brand-logo">
-                <img id="navbarLogo" src="assets/logo-sesi-industria-white.svg" alt="SESI + Indústria">
+                <a href="index.html">
+                    <img id="navbarLogo" src="assets/logo-sesi-industria-primary.svg" alt="SESI + Indústria">
+                </a>
             </div>
-            <nav class="nav-links">
-                <a href="#inicio" class="active">Início</a>
-                <a href="#cursos">Cursos</a>
-                <a href="#sobre">Sobre</a>
+            
+            <!-- Adiciona a classe 'nav-links' e o botão hambúrguer -->
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html#inicio">Início</a>
+                <a href="index.html#cursos">Cursos</a>
+                <a href="index.html#sobre">Sobre</a>
                 <a href="#" class="btn-area-aluno">Área do aluno</a>
             </nav>
+
+            <!-- Botão do Menu Hambúrguer -->
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
     </header>
 

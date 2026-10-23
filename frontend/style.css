@@ -846,3 +846,60 @@ a.btn-cta:hover {
         font-size: 2.3rem;
     }
 }
+
+/* Oculta o botão hambúrguer por padrão em computadores */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #ffffff; /* Ajusta para escuro se o header for branco */
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Quando o header estiver com fundo branco (scrolled), muda a cor do hambúrguer */
+header.navbar.scrolled .hamburger-btn {
+    color: #111111;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .hamburger-btn {
+        display: block;
+    }
+
+    /* Esconde os links por padrão no telemóvel */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Escondido fora da tela à direita */
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #111111;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    /* Classe ativa que traz o menu para a tela */
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        color: #ffffff !important;
+        font-size: 1.1rem;
+    }
+
+    .nav-links .btn-area-aluno {
+        background-color: #b30000;
+        padding: 10px 20px;
+        border-radius: 20px;
+    }
+}

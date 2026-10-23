@@ -8,14 +8,13 @@
 body {
     background-color: #ffffff;
     color: #111111;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
 .ava-layout {
     display: grid;
     grid-template-columns: 320px 1fr;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* --- SIDEBAR ESQUERDA (PRETA) --- */
@@ -24,7 +23,6 @@ body {
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    height: 100vh;
     border-right: 1px solid #222;
 }
 
@@ -119,17 +117,7 @@ body {
 
 /* Menu de Módulos */
 .sidebar-menu {
-    flex-grow: 1;
-    overflow-y: auto;
     padding: 10px 0 20px 0;
-}
-
-.sidebar-menu::-webkit-scrollbar {
-    width: 4px;
-}
-.sidebar-menu::-webkit-scrollbar-thumb {
-    background-color: #333;
-    border-radius: 2px;
 }
 
 .menu-section {
@@ -195,7 +183,6 @@ body {
 /* --- CONTEÚDO PRINCIPAL (DIREITA) --- */
 .ava-content {
     background-color: #ffffff;
-    overflow-y: auto;
     padding: 40px 60px;
 }
 
@@ -226,8 +213,8 @@ body {
 .banner-logo-sesi img {
     height: 22px;
     width: auto;
-    opacity: 0.85; /* Aplica a transparência exata da referência */
-    filter: brightness(0) invert(1); /* Mantém o logo totalmente branco sobre a imagem */
+    opacity: 0.85;
+    filter: brightness(0) invert(1);
 }
 
 .content-text-body h2 {
@@ -250,17 +237,16 @@ body {
     text-align: justify;
 }
 
-/* Responsividade Mobile */
+/* Responsividade Mobile para o AVA */
 @media (max-width: 900px) {
     .ava-layout {
         grid-template-columns: 1fr;
-        height: auto;
-        overflow: auto;
-    }
-    .ava-sidebar {
-        height: auto;
     }
     .ava-content {
-        padding: 20px;
+        padding: 30px 20px;
+    }
+    .content-banner {
+        height: 180px;
+        margin-bottom: 25px;
     }
 }
