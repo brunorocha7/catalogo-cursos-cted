@@ -903,3 +903,14 @@ header.navbar.scrolled .hamburger-btn {
         border-radius: 20px;
     }
 }
+
+/* Links do menu no topo (fundo vermelho) */
+.navbar:not(.scrolled) .nav-links a {
+    color: #ffffff;
+}
+
+/* Botão Área do Aluno no topo */
+.navbar:not(.scrolled) .btn-area-aluno {
+    color: #ffffff;
+    border-color: #ffffff;
+}

@@ -246,12 +246,16 @@ const navbar = document.getElementById('navbar');
 const navbarLogo = document.getElementById('navbarLogo');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
+    if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
-        if (navbarLogo) navbarLogo.src = 'assets/logo-sesi-industria-primary.svg';
+        if (navbarLogo) {
+            navbarLogo.src = 'assets/logo-sesi-industria-primary.svg'; // Logo escura quando rola a página
+        }
     } else {
         navbar.classList.remove('scrolled');
-        if (navbarLogo) navbarLogo.src = 'assets/logo-sesi-industria-white.svg';
+        if (navbarLogo) {
+            navbarLogo.src = 'assets/logo-sesi-industria-white.svg'; // Logo branca quando está no topo (fundo vermelho)
+        }
     }
 });
 
