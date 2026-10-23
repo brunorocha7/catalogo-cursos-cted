@@ -1,17 +1,17 @@
 # Registro do Uso de Inteligência Artificial
 
 ## Ferramenta Utilizada
-- **Gemini / ChatGPT** (Assistente de Inteligência Artificial Generativa)
+- **Gemini** (Assistente de Inteligência Artificial Generativa)
 
 ## Objetivo do Uso
 Auxílio no scaffolding e arquitetura inicial da Web API C# (.NET 8.0), estruturação do modelo de dados do Entity Framework Core com SQLite, criação dos scripts responsivos do Front-end (HTML5/CSS3/JS) e apoio na conteinerização com Docker para deploy no Render e GitHub Pages.
 
 ## Prompts Relevantes
-
 ### O que foi Aproveitado:
 - **Estruturação do Back-end:** Prompt solicitando configuração do `AppDbContext` e mapeamento de rotas com suporte a múltiplos filtros de busca (nome, categoria, modalidade, status) no `CursosController.cs`.
 - **Dockerização:** Prompt para geração de um `Dockerfile` otimizado em múltiplos estágios para compilar e expor a Web API C#.
 - **Interface e Layout:** Prompts para criação do grid responsivo em CSS e lógica de controle do modal de detalhes com tratamento de estados (carregamento, lista vazia, erro e fallback).
+- **Atualização da Documentação (`README.md`):** Pedido para reestruturar a árvore de diretórios do projeto documentando a nova pasta de recursos `frontend/fonts/` com as fontes tipográficas locais (*Open Sans*).
 
 ### O que foi Descartado:
 - **Autenticação Avançada (JWT/OAuth):** Sugestões de implementação de controle de acesso e login foram descartadas por estarem fora do escopo do desafio.
