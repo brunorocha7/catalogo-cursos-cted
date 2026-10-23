@@ -49,7 +49,7 @@
     background-color: #111111;
     color: #ffffff;
     padding: 12px 28px;
-    border-radius: 25px;
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.95rem;
@@ -116,12 +116,13 @@
     line-height: 1.4;
 }
 
-/* --- SOBRE O CURSO & ACCORDION --- */
+/* --- SOBRE O CURSO & ACCORDION (ESPAÇOS REDUZIDOS E COMPACTOS) --- */
 .course-about-section {
     padding: 60px 20px 80px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
+    align-items: start;
 }
 
 .about-text-col h2 {
@@ -140,7 +141,7 @@
 .about-accordion-col {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0px !important;
 }
 
 .accordion-item {
@@ -151,11 +152,11 @@
     width: 100%;
     background: none;
     border: none;
-    padding: 18px 0;
+    padding: 12px 0 !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: #111111;
     cursor: pointer;
@@ -164,7 +165,7 @@
 
 .accordion-content {
     display: none;
-    padding-bottom: 18px;
+    padding-bottom: 12px;
     color: #666666;
     font-size: 0.92rem;
     line-height: 1.5;
@@ -178,11 +179,12 @@
     transform: rotate(45deg);
 }
 
-/* --- DEPOIMENTOS EM FUNDO BEGE --- */
+/* --- DEPOIMENTOS EM FUNDO BEGE COM CARTÕES ESTREITOS (260px) --- */
 .testimonials-beige-section {
-    background-color: #fce8cc;
+    background-color: #FCD19C !important;
     padding: 70px 0;
     color: #111111;
+    overflow: hidden;
 }
 
 .testimonials-beige-section .sub-label {
@@ -198,6 +200,38 @@
     font-weight: 800;
     margin-bottom: 30px;
     color: #111111;
+}
+
+.testimonials-beige-section .testimonials-carousel-wrapper,
+.testimonials-beige-section #testimonialsCarousel, 
+.testimonials-beige-section .testimonials-carousel {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 20px !important;
+    overflow-x: auto !important;
+    scroll-behavior: smooth !important;
+    padding-bottom: 15px !important;
+    scrollbar-width: none;
+}
+
+.testimonials-beige-section .testimonials-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+/* Força os cartões a ficarem estreitos (260px) com fundo branco e texto escuro */
+.testimonials-beige-section .testimonial-card {
+    flex: 0 0 260px !important;
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
+    background-color: #ffffff !important;
+    padding: 24px !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .testimonial-card.white-card {
@@ -248,7 +282,7 @@
     background-color: #ffffff;
     color: #111111;
     padding: 12px 28px;
-    border-radius: 25px;
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.95rem;
@@ -295,7 +329,7 @@
     background-color: #ffffff;
     color: #111111;
     padding: 10px 22px;
-    border-radius: 20px;
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.9rem;
