@@ -4,7 +4,7 @@ const API_CURSOS_ORIGINAL = 'https://catalogo-cursos-api.onrender.com/api/cursos
 // Alterna automaticamente entre o localhost (para testes) e o Render (quando publicado)
 const API_MOODLE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:5092/api/Moodle/cursos'
-    : 'https://NOME-DO-TEU-SERVICO.onrender.com/api/Moodle/cursos'; // Substitui pelo link real do Render quando fizeres o deploy
+    : 'https://catalogo-cursos-api.onrender.com/api/Moodle/cursos';
 
 const searchInput = document.getElementById('searchInput');
 const categoriaFilter = document.getElementById('categoriaFilter');
