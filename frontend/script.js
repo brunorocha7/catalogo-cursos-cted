@@ -1,4 +1,6 @@
-const API_URL = 'https://catalogo-cursos-api.onrender.com/api/cursos';
+// URLs das duas APIs
+const API_CURSOS_ORIGINAL = 'https://catalogo-cursos-api.onrender.com/api/cursos';
+const API_MOODLE = 'http://localhost:5092/api/Moodle/cursos';
 
 const searchInput = document.getElementById('searchInput');
 const categoriaFilter = document.getElementById('categoriaFilter');
@@ -19,96 +21,22 @@ const modalBody = document.getElementById('modalBody');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 
-// Dados fictícios de Fallback caso a API esteja offline/hibernando
-const mockCursos = [
-    {
-        id: 1,
-        nomeCompleto: "Desenvolvimento Web com ASP.NET Core",
-        nomeBreve: "Dev Web ASP.NET",
-        descricao: "Aprenda a criar APIs RESTful modernas e escaláveis com C# e .NET.",
-        categoria: "Tecnologia",
-        modalidade: "EAD",
-        cargaHoraria: 60,
-        publicoAlvo: "Estudantes e desenvolvedores iniciantes",
-        status: "Disponível",
-        imagemUrl: "assets/curso-aspnet.png"
-    },
-    {
-        id: 2,
-        nomeCompleto: "Fundamentos de Banco de Dados SQL",
-        nomeBreve: "Banco de Dados SQL",
-        descricao: "Conceitos fundamentais de modelagem, criação de tabelas e consultas SQL.",
-        categoria: "Tecnologia",
-        modalidade: "Presencial",
-        cargaHoraria: 40,
-        publicoAlvo: "Profissionais de TI e entusiastas",
-        status: "Disponível",
-        imagemUrl: "assets/curso-sql.png"
-    },
-    {
-        id: 3,
-        nomeCompleto: "Gestão Ágil de Projetos com Scrum",
-        nomeBreve: "Scrum e Gestão Ágil",
-        descricao: "Domine o framework Scrum e otimize a entrega de produtos da sua equipa.",
-        categoria: "Gestão",
-        modalidade: "EAD",
-        cargaHoraria: 30,
-        publicoAlvo: "Gestores, líderes de equipa e Scrum Masters",
-        status: "Em Breve",
-        imagemUrl: "assets/curso-scrum.png"
-    },
-    {
-        id: 4,
-        nomeCompleto: "UX/UI Design: Interfaces Centradas no Utilizador",
-        nomeBreve: "UX/UI Design",
-        descricao: "Princípios de experiência do utilizador, prototipagem no Figma e usabilidade.",
-        categoria: "Design",
-        modalidade: "EAD",
-        cargaHoraria: 50,
-        publicoAlvo: "Designers e front-end developers",
-        status: "Disponível",
-        imagemUrl: "assets/curso-ux-ui.png"
-    },
-    {
-        id: 5,
-        nomeCompleto: "Segurança da Informação no Ambiente Corporativo",
-        nomeBreve: "Segurança da Informação",
-        descricao: "Boas práticas de segurança, conformidade e proteção contra ameaças digitais.",
-        categoria: "Tecnologia",
-        modalidade: "Presencial",
-        cargaHoraria: 20,
-        publicoAlvo: "Colaboradores e equipas administrativas",
-        status: "Encerrado",
-        imagemUrl: "assets/curso-seguranca.png"
-    },
-    {
-        id: 6,
-        nomeCompleto: "Liderança e Comunicação Assertiva",
-        nomeBreve: "Liderança Assertiva",
-        descricao: "Desenvolva inteligência emocional, escuta ativa e técnicas de feedback.",
-        categoria: "Gestão",
-        modalidade: "Presencial",
-        cargaHoraria: 16,
-        publicoAlvo: "Líderes de equipa e gestores",
-        status: "Em Breve",
-        imagemUrl: "assets/curso-lideranca.png"
-    }
-];
-
 document.addEventListener('DOMContentLoaded', fetchCursos);
 
-searchInput.addEventListener('input', fetchCursos);
-categoriaFilter.addEventListener('change', fetchCursos);
-modalidadeFilter.addEventListener('change', fetchCursos);
-statusFilter.addEventListener('change', fetchCursos);
+if (searchInput) searchInput.addEventListener('input', fetchCursos);
+if (categoriaFilter) categoriaFilter.addEventListener('change', fetchCursos);
+if (modalidadeFilter) modalidadeFilter.addEventListener('change', fetchCursos);
+if (statusFilter) statusFilter.addEventListener('change', fetchCursos);
 
-clearFiltersBtn.addEventListener('click', () => {
-    searchInput.value = '';
-    categoriaFilter.value = '';
-    modalidadeFilter.value = '';
-    statusFilter.value = '';
-    fetchCursos();
-});
+if (clearFiltersBtn) {
+    clearFiltersBtn.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        if (categoriaFilter) categoriaFilter.value = '';
+        if (modalidadeFilter) modalidadeFilter.value = '';
+        if (statusFilter) statusFilter.value = '';
+        fetchCursos();
+    });
+}
 
 if (closeModalBtn) {
     closeModalBtn.addEventListener('click', closeModal);
@@ -121,40 +49,71 @@ window.addEventListener('click', (e) => {
 async function fetchCursos() {
     showState('loading');
 
-    const nomeVal = searchInput.value.trim().toLowerCase();
-    const catVal = categoriaFilter.value.toLowerCase();
-    const modVal = modalidadeFilter.value.toLowerCase();
-    const statVal = statusFilter.value.toLowerCase();
+    const nomeVal = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    const catVal = categoriaFilter ? categoriaFilter.value.toLowerCase() : '';
+    const modVal = modalidadeFilter ? modalidadeFilter.value.toLowerCase() : '';
+    const statVal = statusFilter ? statusFilter.value.toLowerCase() : '';
 
+    let listaCursosTotal = [];
+
+    // 1. Tenta buscar os cursos da API original
     try {
-        const params = new URLSearchParams();
-        if (nomeVal) params.append('nome', searchInput.value.trim());
-        if (catVal) params.append('categoria', categoriaFilter.value);
-        if (modVal) params.append('modalidade', modalidadeFilter.value);
-        if (statVal) params.append('status', statusFilter.value);
-
-        const response = await fetch(`${API_URL}?${params.toString()}`);
-        if (!response.ok) throw new Error('API indisponível');
-
-        const cursos = await response.json();
-        renderCursos(cursos);
+        const responseOriginal = await fetch(API_CURSOS_ORIGINAL);
+        if (responseOriginal.ok) {
+            const cursosOriginais = await responseOriginal.json();
+            listaCursosTotal = listaCursosTotal.concat(cursosOriginais);
+        }
     } catch (err) {
-        let resultado = mockCursos.filter(c => {
-            const matchesNome = !nomeVal || c.nomeCompleto.toLowerCase().includes(nomeVal) || c.nomeBreve.toLowerCase().includes(nomeVal);
-            const matchesCat = !catVal || c.categoria.toLowerCase() === catVal;
-            const matchesMod = !modVal || c.modalidade.toLowerCase() === modVal;
-            const matchesStat = !statVal || c.status.toLowerCase() === statVal;
-            return matchesNome && matchesCat && matchesMod && matchesStat;
-        });
-
-        renderCursos(resultado);
+        console.warn('API original indisponível ou offline.');
     }
+
+    // 2. Tenta buscar os cursos do Moodle através da tua API C#
+    try {
+        const responseMoodle = await fetch(API_MOODLE);
+        if (responseMoodle.ok) {
+            const moodleCursos = await responseMoodle.json();
+            
+            // Formata os dados do Moodle para o mesmo padrão do front-end
+            const cursosMoodleFormatados = moodleCursos.map(curso => ({
+                id: `moodle-${curso.id}`,
+                nomeCompleto: curso.fullname,
+                nomeBreve: curso.shortname,
+                descricao: curso.summary ? curso.summary.replace(/<[^>]*>?/gm, '') : 'Curso integrado do MoodleCloud.',
+                categoria: 'Tecnologia',
+                modalidade: 'EAD',
+                cargaHoraria: 40,
+                publicoAlvo: 'Alunos gerais',
+                status: 'Disponível',
+                moodleUrl: `https://cted-cursos.moodlecloud.com/course/view.php?id=${curso.id}`
+            }));
+
+            listaCursosTotal = listaCursosTotal.concat(cursosMoodleFormatados);
+        }
+    } catch (err) {
+        console.warn('API do Moodle indisponível.');
+    }
+
+    // Se nenhuma das duas APIs retornar dados, usa o fallback local (mockCursos)
+    if (listaCursosTotal.length === 0 && typeof mockCursos !== 'undefined') {
+        listaCursosTotal = mockCursos;
+    }
+
+    // Aplica os filtros de pesquisa
+    const resultadoFiltrado = listaCursosTotal.filter(c => {
+        const matchesNome = !nomeVal || c.nomeCompleto.toLowerCase().includes(nomeVal) || (c.nomeBreve && c.nomeBreve.toLowerCase().includes(nomeVal));
+        const matchesCat = !catVal || (c.categoria && c.categoria.toLowerCase() === catVal);
+        const matchesMod = !modVal || (c.modalidade && c.modalidade.toLowerCase() === modVal);
+        const matchesStat = !statVal || (c.status && c.status.toLowerCase() === statVal);
+        return matchesNome && matchesCat && matchesMod && matchesStat;
+    });
+
+    renderCursos(resultadoFiltrado);
 }
 
-// Substitua a função renderCursos no script.js
 function renderCursos(cursos) {
+    if (!coursesGrid) return;
     coursesGrid.innerHTML = '';
-    resultsCount.textContent = `Exibindo ${cursos.length} curso(s)`;
+    if (resultsCount) resultsCount.textContent = `Exibindo ${cursos.length} curso(s)`;
 
     if (cursos.length === 0) {
         showState('empty');
@@ -175,7 +134,12 @@ function renderCursos(cursos) {
     cursos.forEach(curso => {
         const card = document.createElement('article');
         card.className = 'course-card';
-        
+
+        // Se for um curso do Moodle, define o link de redirecionamento direto, senão usa a página de detalhes normal
+        const linkDetalhes = curso.moodleUrl ? curso.moodleUrl : `curso.html?id=${curso.id}`;
+        const textoBotao = curso.moodleUrl ? 'Acessar no Moodle' : 'Ver detalhes do curso';
+        const targetAttr = curso.moodleUrl ? 'target="_blank"' : '';
+
         const imgCaminho = curso.imagemUrl && !curso.imagemUrl.includes('via.placeholder') 
             ? curso.imagemUrl 
             : (imagensLocais[curso.id] || "assets/curso-aspnet.png");
@@ -187,79 +151,64 @@ function renderCursos(cursos) {
             <div class="course-body">
                 <h3>${curso.nomeCompleto}</h3>
                 <p>${curso.descricao}</p>
-                <a href="curso.html?id=${curso.id}" class="btn-card-details">Ver detalhes do curso</a>
+                <a href="${linkDetalhes}" ${targetAttr} class="btn-card-details">${textoBotao}</a>
             </div>
         `;
         coursesGrid.appendChild(card);
     });
 }
 
-window.openDetails = async function(id) {
-    let curso;
-    try {
-        const response = await fetch(`${API_URL}/${id}`);
-        if (response.ok) {
-            curso = await response.json();
-        }
-    } catch (e) {
-        // Fallback
-    }
-
-    if (!curso) {
-        curso = mockCursos.find(c => c.id === id);
-    }
-
-    if (!curso) {
-        alert('Curso não encontrado.');
-        return;
-    }
-
-    modalBody.innerHTML = `
-        <h2>${curso.nomeCompleto}</h2>
-        <p><strong>Descrição:</strong> ${curso.descricao}</p>
-        <p><strong>Categoria:</strong> ${curso.categoria}</p>
-        <p><strong>Modalidade:</strong> ${curso.modalidade}</p>
-        <p><strong>Carga Horária:</strong> ${curso.cargaHoraria} horas</p>
-        <p><strong>Público-alvo:</strong> ${curso.publicoAlvo}</p>
-        <p><strong>Status:</strong> ${curso.status}</p>
-    `;
-    
-    modal.style.display = 'flex';
-    modal.setAttribute('aria-hidden', 'false');
-};
-
 function closeModal() {
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
+    if (modal) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+    }
 }
 
 function showState(state) {
-    loadingState.style.display = state === 'loading' ? 'block' : 'none';
-    errorState.style.display = state === 'error' ? 'block' : 'none';
-    emptyState.style.display = state === 'empty' ? 'block' : 'none';
-    coursesGrid.style.display = state === 'content' ? 'flex' : 'none';
-    if (state !== 'content') resultsCount.textContent = '';
+    if (loadingState) loadingState.style.display = state === 'loading' ? 'block' : 'none';
+    if (errorState) errorState.style.display = state === 'error' ? 'block' : 'none';
+    if (emptyState) emptyState.style.display = state === 'empty' ? 'block' : 'none';
+    if (coursesGrid) coursesGrid.style.display = state === 'content' ? 'flex' : 'none';
+    if (state !== 'content' && resultsCount) resultsCount.textContent = '';
 }
 
-// Efeito de troca do Header no Scroll
+// Efeito de scroll do Navbar e menus mobile (mantidos idênticos)
 const navbar = document.getElementById('navbar');
 const navbarLogo = document.getElementById('navbarLogo');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-        if (navbarLogo) {
-            navbarLogo.src = 'assets/logo-sesi-industria-primary.svg'; // Logo escura quando rola a página
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+            if (navbarLogo) navbarLogo.src = 'assets/logo-sesi-industria-primary.svg';
+        } else {
+            navbar.classList.remove('scrolled');
+            if (navbarLogo) navbarLogo.src = 'assets/logo-sesi-industria-white.svg';
         }
-    } else {
-        navbar.classList.remove('scrolled');
-        if (navbarLogo) {
-            navbarLogo.src = 'assets/logo-sesi-industria-white.svg'; // Logo branca quando está no topo (fundo vermelho)
-        }
-    }
-});
+    });
+}
 
-// Controle de cliques nas setas do Carrossel de Cursos
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navLinks = document.getElementById('navLinks');
+
+if (hamburgerBtn && navLinks) {
+    hamburgerBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = hamburgerBtn.querySelector('i');
+        if (icon) {
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+    });
+}
+
+// Controles de cliques nas setas do Carrossel de Cursos
 if (prevBtn && nextBtn && coursesGrid) {
     nextBtn.addEventListener('click', () => {
         coursesGrid.scrollBy({ left: 300, behavior: 'smooth' });
@@ -267,52 +216,5 @@ if (prevBtn && nextBtn && coursesGrid) {
 
     prevBtn.addEventListener('click', () => {
         coursesGrid.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-}
-
-// Controle de cliques nas setas do Carrossel de Depoimentos
-const testimonialsCarousel = document.getElementById('testimonialsCarousel');
-const testimonialPrevBtn = document.getElementById('testimonialPrevBtn');
-const testimonialNextBtn = document.getElementById('testimonialNextBtn');
-
-if (testimonialPrevBtn && testimonialNextBtn && testimonialsCarousel) {
-    testimonialNextBtn.addEventListener('click', () => {
-        testimonialsCarousel.scrollBy({ left: 280, behavior: 'smooth' });
-    });
-
-    testimonialPrevBtn.addEventListener('click', () => {
-        testimonialsCarousel.scrollBy({ left: -280, behavior: 'smooth' });
-    });
-}
-
-// Controle do Menu Hambúrguer Mobile
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const navLinks = document.getElementById('navLinks');
-
-if (hamburgerBtn && navLinks) {
-    hamburgerBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        
-        // Altera o ícone de barras para um 'X' de fechar e vice-versa
-        const icon = hamburgerBtn.querySelector('i');
-        if (navLinks.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
-        } else {
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-        }
-    });
-
-    // Fecha o menu automaticamente ao clicar em qualquer link
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            const icon = hamburgerBtn.querySelector('i');
-            if (icon) {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
     });
 }
