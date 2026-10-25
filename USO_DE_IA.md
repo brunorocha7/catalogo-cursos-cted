@@ -4,12 +4,14 @@
 - **Gemini** (Assistente de Inteligência Artificial Generativa da Google) como copiloto de desenvolvimento para apoio no design, arquitetura, refinamento de código, resolução de conflitos técnicos e estruturação de documentação.
 
 ## 2. Objetivo do Uso
-Auxílio no *scaffolding* e na arquitetura inicial da Web API em C# (.NET 8.0), estruturação do modelo de dados do Entity Framework Core com SQLite, desenvolvimento dos estilos e layouts responsivos em Front-end (HTML5, CSS3 Grid/Flexbox e JavaScript Vanilla), refinamento da experiência visual e consistência de design (UI) com base em protótipos, otimização de componentes interativos (carrosséis, acordeões e cartões), suporte na configuração de Dockerfiles, resolução de conflitos de versão e de escopo CSS, além da elaboração e atualização da documentação técnica do projeto.
+Auxílio no *scaffolding* e na arquitetura inicial da Web API em C# (.NET 8.0), estruturação do modelo de dados do Entity Framework Core com SQLite, desenvolvimento dos estilos e layouts responsivos em Front-end (HTML5, CSS3 Grid/Flexbox e JavaScript Vanilla), refinamento da experiência visual e consistência de design (UI) com base em protótipos, otimização de componentes interativos (carrosséis, acordeões e cartões), suporte na configuração de Dockerfiles, resolução de conflitos de versão e de escopo CSS, além da **integração da plataforma LMS MoodleCloud** através de endpoints dedicados em C# (`MoodleController.cs` e `MoodleCursoModel.cs`) e unificação do consumo de múltiplas APIs com detecção inteligente de ambiente entre desenvolvimento local e produção.
 
 ## 3. Prompts Relevantes (O que foi aproveitado ou descartado)
 
 ### O que foi Aproveitado:
 - **Estruturação do Back-end e Filtros Combinados:** Solicitação de configuração do `AppDbContext` e mapeamento de rotas no `CursosController.cs` utilizando consultas LINQ avançadas para suportar pesquisas parciais por nome e filtros cruzados opcionais (categoria, modalidade e status).
+- **Integração com MoodleCloud (API do Moodle):** Orientações para estruturar a comunicação REST baseada em tokens com os Web Services do Moodle (`core_course_get_courses`), criação do modelo de dados correspondente (`MoodleCursoModel.cs`) e exposição do endpoint no back-end.
+- **Detecção Dinâmica de Ambiente no Front-end:** Implementação de lógica em JavaScript baseada em `window.location.hostname` para alternar automaticamente entre `localhost` e os serviços publicados no Render de forma segura.
 - **Implementação de Carrossel Nativo:** Orientações para estruturar carrosséis horizontais fluidos com rolagem suave (`scroll-behavior: smooth`) e ocultação de barras de rolagem nativas (`scrollbar-width: none`), evitando dependências externas pesadas.
 - **Ajustes de Espaçamento do Acordeão (`curso.html`):** Pedido para reduzir o *padding* vertical e otimizar as linhas divisórias das seções de módulos na página de detalhes do curso para alinhar perfeitamente com o layout de referência do Figma.
 - **Largura e Fundo dos Cartões de Depoimento:** Instruções para estilizar o carrossel de depoimentos, fixando a largura dos cartões em `260px` e aplicando com precisão a cor de fundo bege solicitada, isolando os estilos no arquivo específico da página.
@@ -22,8 +24,8 @@ Auxílio no *scaffolding* e na arquitetura inicial da Web API em C# (.NET 8.0), 
 - **Frameworks de Front-end:** Propostas para reestruturar a interface utilizando frameworks como React ou Vue.js foram desconsideradas para manter a stack puramente nativa (HTML, CSS e JavaScript Vanilla).
 
 ## 4. Como o Conteúdo foi Validado
-1. **Validação de Código e Execução Local:** Os scripts C# gerados foram compilados e testados via .NET CLI (`dotnet run`) e validados por meio da interface interativa do Swagger (`/swagger`).
-2. **Testes de Integração Front-end:** Validação em ambiente de navegador com a ferramenta de inspecção (DevTools) para verificar requisições assíncronas, consumo da API e funcionamento correto dos filtros, carrosséis e acordeões.
+1. **Validação de Código e Execução Local:** Os scripts C# gerados foram compilados e testados via .NET CLI (`dotnet run`) e validados por meio da interface interativa do Swagger (`/swagger`), testando inclusive a rota do MoodleCloud.
+2. **Testes de Integração Front-end:** Validação em ambiente de navegador com a ferramenta de inspecção (DevTools) para verificar requisições assíncronas em simultâneo (APIs unificadas), consumo correto do payload e funcionamento dos filtros e carrosséis.
 3. **Testes Visuais e de Responsividade:** Conferência do comportamento do layout em diferentes resoluções de tela e validação rigorosa da fidelidade visual em relação aos protótipos e imagens de referência enviadas durante o processo.
 
 ## 5. Exemplo de Erro ou Inadequação Identificado
